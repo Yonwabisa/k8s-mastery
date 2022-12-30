@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  frontend:
+    build: ./sa-frontend
+    container_name: frontend
+    expose:
+      - '80:80'
+    depends_on:
+      - webapp
+  webapp:
+    build: ./sa-webapp
+    container_name: webapp
+    ports:
+      - 8080:8080
+    depends_on:
+      - logic
+    environment:
+      - SA_LOGIC_API_URL=http://logic:5000
+  logic:
+    build: ./sa-logic
+    container_name: logic
+    ports:
+      - 5000:5000
