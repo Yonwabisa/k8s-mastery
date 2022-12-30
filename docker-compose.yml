@@ -3,7 +3,7 @@ services:
   frontend:
     build: ./sa-frontend
     container_name: frontend
-    expose:
+    ports:
       - '80:80'
     depends_on:
       - webapp
@@ -19,5 +19,5 @@ services:
   logic:
     build: ./sa-logic
     container_name: logic
-    ports:
+    expose:
       - 5000:5000
